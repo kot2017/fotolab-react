@@ -1,5 +1,19 @@
 # Fotolab- REACT
 
+`npm install redux --save`
+
+`npm install react-redux --save`
+ 
+` npm i redux-thunk --save-dev`
+
+`npm i react-id-generator`
+
+`npm install react-bootstrap bootstrap`
+
+`npm install react-bootstrap-table-next --save`
+
+`npm add react-select`
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -14,6 +14,20 @@
 
 `npm add react-select`
 
+`npm install --save react-router-dom`
+
+https://www.nafrontendzie.pl/react-router-wersji-4-wszystko-nowa
+
+https://reacttraining.com/react-router/web/guides/quick-start
+
+
+przykład połączenia react i bootstrap
+
+C:\LAB\REACT\projekty\reactlab31
+
+=============
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

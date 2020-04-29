@@ -12,13 +12,14 @@ import {
 
 import Home from './Home';
 import About from './About';
-import Topics from "./Topics";
+import Result from "./Result";
 
 // import header from "./img/header.jpg";
 //import FlameArtwork2 from "./img/FlameArtwork2.png";
 
 
-import DataFilmy from "./DataFilmy";
+import DataInput from "./DataInput";
+import ResultInput from "./ResultInput";
 
 
 class App extends Component {
@@ -41,11 +42,14 @@ class App extends Component {
                                     <ul className={"nav navbar-nav ml-auto"}>
                                         <li className={"nav-item"}>
                                             <Link class={"nav-link"} to="/">Home</Link></li>
-                                        <li className={"nav-item"}>
-                                            <Link class={"nav-link"} to="/about">About</Link></li>
-                                        <li className={"nav-item"}>
-                                            <Link class={"nav-link"} to="/topics">Topics</Link></li>
 
+                                        <li className={"nav-item"}>
+                                            <Link class={"nav-link"} to="/result">Wyniki</Link></li>
+                                        <li className={"nav-item"}>
+                                            <Link class={"nav-link"} to="/newresult">Nowy wyniki</Link></li>
+
+                                        <li className={"nav-item"}>
+                                            <Link class={"nav-link"} to="/datainput">Wprowadzanie danych</Link></li>
 
                                     </ul>
                                 </div>
@@ -67,8 +71,9 @@ class App extends Component {
 
                     <Route exact path="/" component={Home}/>
                     <Route path="/about" component={About}/>
-                    <Route path="/topics" component={Topics}/>
-                    <Route path="/filmy" component={DataFilmy}/>
+                    <Route path="/result" component={Result}/>
+                    <Route path="/newresult" component={ResultInput}/>
+                    <Route path="/datainput" component={DataInput}/>
                 </div>
             </Router>
         );

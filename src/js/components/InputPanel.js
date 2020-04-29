@@ -1,12 +1,27 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
+import {getDataProducenci } from "../actions";
 
 import f1 from "../../img/filmy.jpg";
 import f2 from "../../img/f_18.JPG";
 import SelectPanel from "./SelectPanel";
 import ResultTime from "./ResultTime";
+import SelectPanelProducent from "./SelectPanelProducent";
 
 
-class InputPanel extends Component {
+const mapStateToProps = state => {
+    return {
+        producenci: state.producenci
+    };
+}
+
+
+class ConnectedInputPanel extends Component {
+
+    componentDidMount() {
+        this.props.getDataProducenci();
+    }
+
 
     render() {
 
@@ -14,14 +29,14 @@ class InputPanel extends Component {
             <div className={"container"} id="cont1">
                 <div className={"row"} id="row1">
                     <div className={"col-sm-12 col-md-6"} id="col1filmy">
-                        {/*<p>row1col1 panel filmow</p>*/}
-                        <SelectPanel/>
+                        <h2>filmy</h2>
+                        <SelectPanelProducent />
                         <SelectPanel/>
                         <SelectPanel/>
                     </div>
                     <div className={"col-sm-12 col-md-6"} id="col2wyw">
-                        {/*<p>row1col2 panel wywolywacza</p>*/}
-                        <SelectPanel/>
+                        <h2>wywolywacze</h2>
+                        <SelectPanelProducent />
                         <SelectPanel/>
                         <SelectPanel/>
                     </div>
@@ -53,5 +68,7 @@ class InputPanel extends Component {
 
 }
 
+
+const InputPanel = connect(null, { getDataProducenci })(ConnectedInputPanel);
 
 export default InputPanel;

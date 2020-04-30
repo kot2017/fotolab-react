@@ -6,38 +6,35 @@ import {   selectProducentFilmowId, getDataFilmy } from "../actions";
 
 const mapStateToProps = state => {
     return {
-        producenci: state.producenci
+        producenciFilmow: state.producenciFilmow
     };
 }
 
 
 function mapDispatchToProps(dispatch) {
     return {
-        selectProducentFilmowId: producentId => dispatch(selectProducentFilmowId(producentId)),
-         getDataFilmy: producentId => dispatch(getDataFilmy(producentId))
+        selectProducentFilmowId: producentFilmowId => dispatch(selectProducentFilmowId(producentFilmowId)),
+         getDataFilmy: producentFilmowId => dispatch(getDataFilmy(producentFilmowId))
     }
 }
 
 
 
-class ConnectedSelectPanelProducent extends Component{
+class ConnectedSelectPanelProducentFilmow extends Component{
 
     constructor(props) {
         super(props);
         this.state = {
-            producentId: -1,
+            producentFilmowId: -1,
         }
         this.handleChange = this.handleChange.bind(this);
     }
 
 
     handleChange(event) {
-        console.log("event ="+ event.target.value);
         const targetValue = event.target.value;
         console.log("wybrany producent przy zmianie: "+ targetValue);
-        this.setState( Object.assign( this.state, {  producentId:targetValue })  );
         this.props.selectProducentFilmowId(targetValue);
-        //wywolaj rest dla listy filmow tego producenta
         this.props.getDataFilmy(targetValue)
     };
 
@@ -54,7 +51,10 @@ class ConnectedSelectPanelProducent extends Component{
                         </div>
                         <div className="col" id="col2select">
                             <select onChange={this.handleChange} name={"selectProdFilm"} id={"selectProdFilm"}>
-                                {this.props.producenci.map(
+
+                                <option key={-1} value={-1}>wybierz</option>
+                                {this.props.producenciFilmow.map(
+
                                     el => (
                                         <option key={el.id} value={el.id}>{el.nazwa}</option>
                                     )
@@ -68,6 +68,6 @@ class ConnectedSelectPanelProducent extends Component{
     }
 }
 
-const SelectPanelProducent = connect(mapStateToProps, mapDispatchToProps )(ConnectedSelectPanelProducent);
+const SelectPanelProducentFilmow = connect(mapStateToProps, mapDispatchToProps )(ConnectedSelectPanelProducentFilmow);
 
-export default SelectPanelProducent;
+export default SelectPanelProducentFilmow;

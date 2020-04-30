@@ -1,25 +1,27 @@
 import {
     LOAD_PRODUCENT,
-    SELECT_PRODUCENT,
-    SELECT_ID_PRODUCENT_FILMOW,
+    SELECT_FILMOW_ID_PRODUCENT,
     SELECT_ID_PRODUCENT_CHEMII,
     LOAD_CHEMIA,
-    LOAD_FILMY
+    LOAD_FILMY,
+    SELECT_ID_CHEMIA,
+    SELECT_ID_FILM,
+    SELECT_DILUTION,
+    SELECT_ASA,
 } from "../constants/action-types";
 
 
 const initialState = {
-    producenci: [{id: -1, nazwa: "", opis: "", link: ""}],
-    selectedProducent: {
-        id: -1,
-        nazwa: "",
-        opis: "",
-        link: ""
-    },
+    producenciFilmow: [],
+    producenciChemii: [] ,
     selectedProducentFilmow: -1,
     selectedProducentChemii: -1,
     filmy: [],
-    chemia: []
+    chemia: [],
+    selectedFilmId: -1,
+    selectedChemiaId: -1,
+    selectedASA: 0,
+    selectedDilution: 0
 
 }
 
@@ -29,11 +31,15 @@ function rootReducer(state = initialState, action) {
     switch (action.type) {
 
         case LOAD_PRODUCENT: {
+            const prodFilm   = action.payload.slice(0);
+            const progChem = action.payload.slice(0);
             return Object.assign({}, state,
                 {
-                    producenci: action.payload
+                    producenciFilmow: prodFilm,
+                    producenciChemii: progChem
                 });
         }
+
 
         case LOAD_FILMY: {
             return Object.assign({}, state, {
@@ -48,22 +54,43 @@ function rootReducer(state = initialState, action) {
         }
 
 
-        case SELECT_PRODUCENT: {
+
+        case SELECT_ID_PRODUCENT_CHEMII: {
             return Object.assign({}, state, {
-                    selectedProducent: action.payload
-                }
-            );
+                selectedProducentChemii: action.payload
+            })
         }
 
-        case  SELECT_ID_PRODUCENT_FILMOW: {
+
+        case  SELECT_FILMOW_ID_PRODUCENT: {
             return Object.assign({}, state, {
                 selectedProducentFilmow: action.payload
             });
         }
 
-        case SELECT_ID_PRODUCENT_CHEMII: {
+
+
+        case SELECT_ID_FILM: {
             return Object.assign({}, state, {
-                selectedProducentChemii: action.payload
+                selectedFilmId: action.payload
+            })
+        }
+
+        case SELECT_ID_CHEMIA: {
+            return Object.assign({}, state , {
+                selectedChemiaId: action.payload
+            })
+        }
+
+        case SELECT_ASA: {
+            return Object.assign({}, state, {
+                selectedASA: action.payload
+            })
+        }
+
+        case SELECT_DILUTION: {
+            return Object.assign({}, state, {
+                selectedDilution: action.payload
             })
         }
 

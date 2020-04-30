@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 
-class TextTab extends Component{
+class TextTab extends Component {
 
 
     constructor(props, context) {
@@ -11,7 +11,7 @@ class TextTab extends Component{
 
     render() {
 
-        return(
+        return (
             <div className="container">
                 <div className="row">
                     <div className="col">

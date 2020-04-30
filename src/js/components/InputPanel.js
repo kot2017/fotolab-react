@@ -6,14 +6,22 @@ import f1 from "../../img/filmy.jpg";
 import f2 from "../../img/f_18.JPG";
 import SelectPanel from "./SelectPanel";
 import ResultTime from "./ResultTime";
-import SelectPanelProducent from "./SelectPanelProducent";
+import SelectPanelProducentFilmow from "./SelectPanelProducentFilmow";
+import SelectPanelFilmy from "./SelectPanelFilmy";
+import SelectPanelChemia from "./SelectPanelChemia";
+import SelectPanelProducentChemii from "./SelectPanelProducentChemii";
+import SelectPanelASA from "./SelectPanelASA";
+import SelectPanelDilution from "./SelectPanelDilution";
 
 
 const mapStateToProps = state => {
     return {
-        producenci: state.producenci
+        producenciFilmow: state.producenciFilmow,
+        producenciChemii: state.producenciChemii
     };
 }
+
+
 
 
 class ConnectedInputPanel extends Component {
@@ -30,15 +38,15 @@ class ConnectedInputPanel extends Component {
                 <div className={"row"} id="row1">
                     <div className={"col-sm-12 col-md-6"} id="col1filmy">
                         <h2>filmy</h2>
-                        <SelectPanelProducent />
-                        <SelectPanel/>
-                        <SelectPanel/>
+                        <SelectPanelProducentFilmow />
+                        <SelectPanelFilmy />
+                        <SelectPanelASA/>
                     </div>
                     <div className={"col-sm-12 col-md-6"} id="col2wyw">
                         <h2>wywolywacze</h2>
-                        <SelectPanelProducent />
-                        <SelectPanel/>
-                        <SelectPanel/>
+                        <SelectPanelProducentChemii />
+                        <SelectPanelChemia />
+                        <SelectPanelDilution/>
                     </div>
                 </div>
 

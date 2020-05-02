@@ -8,6 +8,7 @@ import {
     SELECT_ID_FILM,
     SELECT_DILUTION,
     SELECT_ASA,
+    GET_RESULT
 } from "../constants/action-types";
 
 
@@ -21,7 +22,10 @@ const initialState = {
     selectedFilmId: -1,
     selectedChemiaId: -1,
     selectedASA: 0,
-    selectedDilution: 0
+    selectedDilution: 0,
+    result: {},
+    selimgFilm: -1,
+    selimgChem: -1
 
 }
 
@@ -71,8 +75,10 @@ function rootReducer(state = initialState, action) {
 
 
         case SELECT_ID_FILM: {
+
             return Object.assign({}, state, {
-                selectedFilmId: action.payload
+                selectedFilmId: action.payload,
+                selimgFilm: action.payload
             })
         }
 
@@ -93,6 +99,13 @@ function rootReducer(state = initialState, action) {
                 selectedDilution: action.payload
             })
         }
+
+        case GET_RESULT: {
+            return Object.assign({}, state, {
+                result: action.payload
+            })
+        }
+
 
         default: {
             return state;

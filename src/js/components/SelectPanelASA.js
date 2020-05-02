@@ -3,9 +3,9 @@ import {selectASA} from "../actions";
 import {connect} from "react-redux";
 
 
-const mapStateToProps = state => {
-    return {selectedASA: state.selectedASA}
-}
+// const mapStateToProps = state => {
+//     return {selectedASA: state.selectedASA}
+// }
 
 
 function matDispatchToState(dispatch){
@@ -36,7 +36,6 @@ class ConnectedSelectPanelASA extends Component{
             {asa:50,din:50 },
             {asa:64,din:19 },
             {asa:100,din:21 },
-            {asa:160,din:23 },
             {asa:160,din:23 },
             {asa:200,din:24 },
             {asa:320,din:26 },

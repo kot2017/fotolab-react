@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 
 import {   selectProducentChemiiId, getDataChemia } from "../actions";
-import {logger} from "../middleware";
+//import {logger} from "../middleware";
 
 
 const mapStateToProps = state => {
@@ -43,7 +43,7 @@ class ConnectedSelectPanelProducentChemii extends Component{
 
 
     render() {
-        const {selectedOption } = this.state;
+      //  const {selectedOption } = this.state;
 
         return (
             <div id="body3">

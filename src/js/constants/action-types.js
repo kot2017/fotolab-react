@@ -28,3 +28,6 @@ export const SELECT_ASA = "SELECT_ASA";
 
 //wybranie rozcieńczenia
 export const SELECT_DILUTION = "SELECT_DILUTION";
+
+//pobranie wyniku wywolania
+export const GET_RESULT = "GET_RESULT";

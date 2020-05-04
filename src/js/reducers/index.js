@@ -24,7 +24,7 @@ const initialState = {
     selectedASA: 0,
     selectedDilution: 0,
     result: {},
-    selimgFilm: -1,
+    selimgFilm: "1.jpg",
     selimgChem: -1
 
 }
@@ -67,18 +67,21 @@ function rootReducer(state = initialState, action) {
 
 
         case  SELECT_FILMOW_ID_PRODUCENT: {
+
             return Object.assign({}, state, {
                 selectedProducentFilmow: action.payload
+
             });
         }
 
 
 
         case SELECT_ID_FILM: {
-
+            var imgName = `${action.img}.jpg`
+            console.log("film= "+ action.id + "  img= "+ action.img)
             return Object.assign({}, state, {
-                selectedFilmId: action.payload,
-                selimgFilm: action.payload
+                selectedFilmId: action.id,
+                selimgFilm: imgName
             })
         }
 

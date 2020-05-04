@@ -3,7 +3,6 @@ import {selectFilmId} from "../actions";
 import {connect} from "react-redux";
 
 
-
 //mapowanie stanu na properties
 const mapStateToProps = state => {
     return {
@@ -14,7 +13,7 @@ const mapStateToProps = state => {
 //mapowanie funkcji na wywolanie akcji
 //mapujemy wybranie id filmu
 function mapDispatchToState(dispatch) {
-    return { selectFilmId: filmId => dispatch(selectFilmId(filmId)) }
+    return { selectFilmId: (filmId, imgId) => dispatch(selectFilmId(filmId, imgId)) }
 }
 
 
@@ -26,14 +25,20 @@ class ConnectedSelectPanelFilmy extends Component{
         super(props);
        this.state = {
            filmId: -1,
+           imgId : "1.jpg"
         }
         this.handleChange = this.handleChange.bind(this);
 
     }
 
     handleChange(event){
+
         const targetValue = event.target.value;
-        this.props.selectFilmId(targetValue);
+        console.log(" handleChange  targetValue= "+targetValue )
+        var res = targetValue.split("&");
+
+        this.props.selectFilmId(res[0], res[1]);
+
     }
 
 
@@ -53,7 +58,7 @@ class ConnectedSelectPanelFilmy extends Component{
                                 <option key={-1} value={-1}>wybierz film</option>
 
                                 {this.props.filmy.map(
-                                    el => <option id={el.id} key={el.id} value={el.id}>{el.nazwa}</option>
+                                    el => <option id={el.id} key={el.id} value={`${el.id}&${el.nazwa}`}>{el.nazwa}</option>
                                 )}
 
                             </select>

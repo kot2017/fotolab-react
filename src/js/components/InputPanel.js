@@ -4,7 +4,7 @@ import {getDataProducenci, getDataResult } from "../actions";
 
 //import f1 from "../../img/filmy.jpg";
 import f2 from "../../img/Ultrafin.jpg";
-import f400 from "../../img/filmy/4.jpg"
+import f400 from "../../img/filmy/Fuji400.jpg"
 
 import ResultTime from "./ResultTime";
 import SelectPanelProducentFilmow from "./SelectPanelProducentFilmow";
@@ -13,6 +13,9 @@ import SelectPanelChemia from "./SelectPanelChemia";
 import SelectPanelProducentChemii from "./SelectPanelProducentChemii";
 import SelectPanelASA from "./SelectPanelASA";
 import SelectPanelDilution from "./SelectPanelDilution";
+
+
+var images = require.context('../../img', true);
 
 
 const mapStateToProps = state => {
@@ -40,13 +43,14 @@ class ConnectedInputPanel extends Component {
         this.handleClick = this.handleClick.bind(this);
        // this.loadImage = this.loadImage.bind(this);
         this.state = {
-            image: "../../img/film/4.jpg"
+          //  image: "../../img/film/Fuji400.jpg",
+           //img:  this.state.selectedFilmId  // ? "F125" : this.state.film
+          img : "1.jpg"
         }
     }
 
     componentDidMount() {
         this.props.getDataProducenci();
-
     }
 
 //asa=100&roz=20&film=4&chemia=1"
@@ -56,14 +60,15 @@ class ConnectedInputPanel extends Component {
         const f = this.props.film;
         const c = this.props.chemia;
 
+        const fi = this.props.imgFilm;
 
         console.log(" handleClick asa="+ a);
         console.log(" handleClick roz="+ r);
         console.log(" handleClick film="+ f);
         console.log(" handleClick chemia="+ c);
 
+        console.log(" handleClick imgFilm="+ fi);
       this.props.getDataResult(a,r,f,c);
-
     }
 
 
@@ -71,18 +76,39 @@ class ConnectedInputPanel extends Component {
     // loadImage = imageName => {
     //
     //     console.log("imageName  = "+ imageName);
-    //     import(`../../img/filmy/${imageName}.jpg`).then(image => {
+    //     import(`../../img/filmy/${imageName}`).then(img => {
     //         this.setState({
-    //             image
+    //             img
     //         });
     //     });
     // };
 
+    loadImage(imageName){
+            console.log("imageName  = "+ imageName);
+            import(`../../img/filmy/${imageName}`).then(img => {
+                this.setState({
+                    img
+                });
+            });
+    }
+
 
 
     render() {
+        console.log(" RENDER..")
 
-      const  image  = this.state.image
+     //   this.loadImage(this.props.imgFilm)
+
+       const img1 = "F125.jpg"
+       //  const img1 = this.state.selimgFilm
+       // let img_src = images(`./filmy/${this.state.imgFilm}`);
+        console.log("images:  "+ images);
+        console.log("this.state.imgFilm :  "+ this.state.imgFilm);
+       // console.log("this.state.img :  "+ this.state.img);
+        console.log(" img1 = "+img1)
+        console.log("this.props.imgFilm :  "+ this.props.imgFilm);
+
+        const img = this.props.imgFilm;
 
         return (
             <div className={"container"} id="cont1">
@@ -108,18 +134,15 @@ class ConnectedInputPanel extends Component {
                 </div>
 
                 <div className={"row"} id="row2">
-                    <div className={"col-md-6 col-sm-12"} id="row2col1fotfilm">
+                    <div className={"col-md-6 col-sm-12"} id="row2col1fotfilm" >
+
+        {/*<img src={img1} alt={""}/>*/}
 
 
-                        {/*<img src={require('../../img/filmy/4.jpg')} alt="product" />*/}
+                        <img src={require(`../../img/filmy/${img}` )} alt="product" width={200} height={200} />
 
-                        <img src={require(`${image}`)} alt="product" />
-
-
-                        {/*<img id="imgfilm" src={f400} alt={"f1"} width={200} height={200}/>*/}
                     </div>
-                    {/*<div className={"col-2"} id="row2col2button">*/}
-                    {/*</div>*/}
+
                     <div className={"col-md-6 col-sm-12"} id="row2col3fotwyw">
                         <img id="imgwyw" src={f2} alt={"f2"} width={200} height={200}/>
                     </div>

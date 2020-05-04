@@ -76,8 +76,8 @@ export function selectProducentChemiiId(payload) {
 }
 
 
-export function selectFilmId(payload) {
-    return {type: SELECT_ID_FILM, payload}
+export function selectFilmId(id, img) {
+    return {type: SELECT_ID_FILM, id: id, img:img}
 }
 
 export function selectChemiaId(payload) {

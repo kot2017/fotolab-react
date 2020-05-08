@@ -31,3 +31,11 @@ export const SELECT_DILUTION = "SELECT_DILUTION";
 
 //pobranie wyniku wywolania
 export const GET_RESULT = "GET_RESULT";
+
+//pobranie zdjęcia
+export const GET_IMAGE = "GET_IMAGE";
+
+//pobranie miniaturki zdjecia
+export const GET_SMALL_IMAGE = "GET_SMALL_IMAGE";
+
+export const LOAD_IMAGES = "LOAD_IMAGES";

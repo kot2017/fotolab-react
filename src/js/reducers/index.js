@@ -8,7 +8,10 @@ import {
     SELECT_ID_FILM,
     SELECT_DILUTION,
     SELECT_ASA,
-    GET_RESULT
+    GET_RESULT,
+    GET_SMALL_IMAGE,
+    GET_IMAGE,
+    LOAD_IMAGES
 } from "../constants/action-types";
 
 
@@ -25,7 +28,12 @@ const initialState = {
     selectedDilution: 0,
     result: {},
     selimgFilm: "1.jpg",
-    selimgChem: -1
+    selimgChem: "1.jpg",
+    smallImages: [],
+    image: {},
+    cards: [],
+    card: {},
+
 
 }
 
@@ -77,17 +85,18 @@ function rootReducer(state = initialState, action) {
 
 
         case SELECT_ID_FILM: {
-            var imgName = `${action.img}.jpg`
+        //    var imgName = `${action.img}.jpg`
             console.log("film= "+ action.id + "  img= "+ action.img)
             return Object.assign({}, state, {
                 selectedFilmId: action.id,
-                selimgFilm: imgName
+                selimgFilm: action.img
             })
         }
 
         case SELECT_ID_CHEMIA: {
             return Object.assign({}, state , {
-                selectedChemiaId: action.payload
+                selectedChemiaId: action.id,
+                selimgChem: action.img
             })
         }
 
@@ -106,6 +115,34 @@ function rootReducer(state = initialState, action) {
         case GET_RESULT: {
             return Object.assign({}, state, {
                 result: action.payload
+            })
+        }
+
+        case GET_SMALL_IMAGE: {
+            return Object.assign({}, state ,{
+                // smallImages: action.payload,
+                card:
+            {
+                imagFile:  action.imgFile,
+                url: action.imgUrl,
+                katalog: action.katalog,
+                imageName: action.image
+
+            }
+
+            })
+        }
+
+        case GET_IMAGE: {
+            return Object.assign({}, state ,{
+                image:  action.payload
+            })
+        }
+
+        case LOAD_IMAGES: {
+            return Object.assign({}, state, {
+
+                cards: Array.prototype.concat( action.payload)
             })
         }
 

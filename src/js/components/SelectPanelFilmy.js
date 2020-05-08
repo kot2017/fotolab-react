@@ -23,10 +23,10 @@ class ConnectedSelectPanelFilmy extends Component{
 
     constructor(props) {
         super(props);
-       this.state = {
-           filmId: -1,
-           imgId : "1.jpg"
-        }
+       // this.state = {
+       //     filmId: -1,
+       //     imgId : "1.jpg"
+       //  }
         this.handleChange = this.handleChange.bind(this);
 
     }
@@ -44,7 +44,7 @@ class ConnectedSelectPanelFilmy extends Component{
 
 
     render() {
-
+        console.log("RENDER .. filmy")
         return (
             <div id="body3">
                 <div className="container" id="cont-select">
@@ -58,7 +58,7 @@ class ConnectedSelectPanelFilmy extends Component{
                                 <option key={-1} value={-1}>wybierz film</option>
 
                                 {this.props.filmy.map(
-                                    el => <option id={el.id} key={el.id} value={`${el.id}&${el.nazwa}`}>{el.nazwa}</option>
+                                    el => <option id={el.id} key={el.id} value={`${el.id}&${el.fot}`}>{el.nazwa}</option>
                                 )}
 
                             </select>

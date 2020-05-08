@@ -4,6 +4,8 @@ import InputPanel from "./js/components/InputPanel";
 import kot from "./img/kot.jpg";
 import ResultGallery from "./js/components/ResultGallery";
 
+
+
 const Result = () => {
     return (
         <div className="container">
@@ -25,6 +27,7 @@ const Result = () => {
                         <div className={"col-sm-12 col-5"} id="col2picture">
                             <div id="col2picturediv">
                                 {/*<img src={kot} alt={"kot"} />*/}
+                                {/*<img src={process.env.PUBLIC_URL + '/asset/images/FOT1.jpg'} />*/}
 
                             </div>
                         </div>

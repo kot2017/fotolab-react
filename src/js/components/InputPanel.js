@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {getDataProducenci, getDataResult } from "../actions";
+import {getDataProducenci, getDataResult, getDataImage, getDataSmallImage, loadDataImages } from "../actions";
 
-//import f1 from "../../img/filmy.jpg";
-import f2 from "../../img/Ultrafin.jpg";
-import f400 from "../../img/filmy/Fuji400.jpg"
+//import f2 from "../../img/Ultrafin.jpg";
 
 import ResultTime from "./ResultTime";
 import SelectPanelProducentFilmow from "./SelectPanelProducentFilmow";
@@ -13,9 +11,11 @@ import SelectPanelChemia from "./SelectPanelChemia";
 import SelectPanelProducentChemii from "./SelectPanelProducentChemii";
 import SelectPanelASA from "./SelectPanelASA";
 import SelectPanelDilution from "./SelectPanelDilution";
+//import ImageGallery from "./ImageGalery";
+import ImageCard from "./ImageCard";
 
 
-var images = require.context('../../img', true);
+//var images = require.context('../../img', true);
 
 
 const mapStateToProps = state => {
@@ -27,10 +27,18 @@ const mapStateToProps = state => {
         asa: state.selectedASA,
         roz: state.selectedDilution,
         imgFilm: state.selimgFilm,
-        imgChem: state.selimgChem
+        imgChem: state.selimgChem,
+        image: state.image,
+        smallImages: state.smallImages,
+        imageNames: state.result.images,
+        katalog: state.result.katalog,
+        cards: state.cards
+
 
     };
 }
+
+
 
 
 
@@ -41,13 +49,13 @@ class ConnectedInputPanel extends Component {
     constructor(props, context) {
         super(props, context);
         this.handleClick = this.handleClick.bind(this);
-       // this.loadImage = this.loadImage.bind(this);
         this.state = {
-          //  image: "../../img/film/Fuji400.jpg",
-           //img:  this.state.selectedFilmId  // ? "F125" : this.state.film
-          img : "1.jpg"
+        selIm:""
         }
     }
+
+
+
 
     componentDidMount() {
         this.props.getDataProducenci();
@@ -69,46 +77,37 @@ class ConnectedInputPanel extends Component {
 
         console.log(" handleClick imgFilm="+ fi);
       this.props.getDataResult(a,r,f,c);
+      this.loadComponent();
     }
 
 
+    loadComponent(){
 
-    // loadImage = imageName => {
-    //
-    //     console.log("imageName  = "+ imageName);
-    //     import(`../../img/filmy/${imageName}`).then(img => {
-    //         this.setState({
-    //             img
-    //         });
-    //     });
-    // };
+        const katalog =  "FUJI_F400/100ASA/TetenalUltrafin/1do20/20min";
+       const imageName = "N10142_Fuji400-100ASA_Tetenal-Ultrafin-1do20-20min_FOT15.jpg";
+        this.props.getDataSmallImage(katalog, imageName);
 
-    loadImage(imageName){
-            console.log("imageName  = "+ imageName);
-            import(`../../img/filmy/${imageName}`).then(img => {
-                this.setState({
-                    img
-                });
-            });
+      const kat = this.props.katalog;
+      const im = this.props.imageNames;
+        this.props.loadDataImages(katalog,im);
+
     }
 
+    clikImage(){
+        console.log(" kliknalem "  );
+      //  this.props.getDataImage(this.props.katalog, imageName);
+    }
 
 
     render() {
-        console.log(" RENDER..")
 
-     //   this.loadImage(this.props.imgFilm)
+        console.log("RENDER .. INPUT")
 
-       const img1 = "F125.jpg"
-       //  const img1 = this.state.selimgFilm
-       // let img_src = images(`./filmy/${this.state.imgFilm}`);
-        console.log("images:  "+ images);
-        console.log("this.state.imgFilm :  "+ this.state.imgFilm);
-       // console.log("this.state.img :  "+ this.state.img);
-        console.log(" img1 = "+img1)
-        console.log("this.props.imgFilm :  "+ this.props.imgFilm);
+        const imgF = this.props.imgFilm;
+        const imgC = this.props.imgChem;
 
-        const img = this.props.imgFilm;
+        console.log("imgF="+ imgF);
+        console.log("imgC="+ imgC);
 
         return (
             <div className={"container"} id="cont1">
@@ -136,15 +135,16 @@ class ConnectedInputPanel extends Component {
                 <div className={"row"} id="row2">
                     <div className={"col-md-6 col-sm-12"} id="row2col1fotfilm" >
 
-        {/*<img src={img1} alt={""}/>*/}
 
-
-                        <img src={require(`../../img/filmy/${img}` )} alt="product" width={200} height={200} />
+                        <img src={require(`../../img/filmy/${imgF}` )} alt="product" width={200} height={200} />
 
                     </div>
 
                     <div className={"col-md-6 col-sm-12"} id="row2col3fotwyw">
-                        <img id="imgwyw" src={f2} alt={"f2"} width={200} height={200}/>
+
+                        <img src={require(`../../img/chemia/${imgC}` )} alt="productC" width={200} height={200} />
+
+
                     </div>
                 </div>
                 <div className={"row"} id="row3">
@@ -152,7 +152,15 @@ class ConnectedInputPanel extends Component {
 
                         <ResultTime/>
                     </div>
+
+                    {/*<p>{this.props.image.size}IMAGE from this.props.image {this.props.image.type}</p>*/}
+
+                    {/*    <div><img key="123" src={this.props.image}  alt={"aa"} onClick={this.clikImage}  />   </div>*/}
+
+
                 </div>
+
+                <ImageCard/>
             </div>
         )
     }
@@ -160,6 +168,6 @@ class ConnectedInputPanel extends Component {
 }
 
 
-const InputPanel = connect(mapStateToProps, { getDataProducenci, getDataResult })(ConnectedInputPanel);
+const InputPanel = connect(mapStateToProps, { getDataProducenci, getDataResult, getDataImage, getDataSmallImage , loadDataImages })(ConnectedInputPanel);
 
 export default InputPanel;

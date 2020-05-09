@@ -3,6 +3,7 @@ import InputPanel from "./js/components/InputPanel";
 
 import kot from "./img/kot.jpg";
 import ResultGallery from "./js/components/ResultGallery";
+import ImageGallery from "./js/components/ImageGalery";
 
 
 
@@ -36,7 +37,9 @@ const Result = () => {
 
             </div>
 
-            <ResultGallery/>
+
+
+
         </div>
     );
 }

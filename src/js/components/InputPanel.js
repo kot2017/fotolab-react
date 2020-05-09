@@ -32,7 +32,8 @@ const mapStateToProps = state => {
         smallImages: state.smallImages,
         imageNames: state.result.images,
         katalog: state.result.katalog,
-        cards: state.cards
+        cards: state.cards,
+        result: state.result
 
 
     };
@@ -49,6 +50,7 @@ class ConnectedInputPanel extends Component {
     constructor(props, context) {
         super(props, context);
         this.handleClick = this.handleClick.bind(this);
+        this.handleLoad = this.handleLoad.bind(this);
         this.state = {
         selIm:""
         }
@@ -77,26 +79,19 @@ class ConnectedInputPanel extends Component {
 
         console.log(" handleClick imgFilm="+ fi);
       this.props.getDataResult(a,r,f,c);
-      this.loadComponent();
-    }
-
-
-    loadComponent(){
-
-        const katalog =  "FUJI_F400/100ASA/TetenalUltrafin/1do20/20min";
-       const imageName = "N10142_Fuji400-100ASA_Tetenal-Ultrafin-1do20-20min_FOT15.jpg";
-        this.props.getDataSmallImage(katalog, imageName);
-
-      const kat = this.props.katalog;
-      const im = this.props.imageNames;
-        this.props.loadDataImages(katalog,im);
 
     }
 
-    clikImage(){
-        console.log(" kliknalem "  );
-      //  this.props.getDataImage(this.props.katalog, imageName);
+    handleLoad(){
+        const images = this.props.imageNames;
+        const katalog = this.props.katalog;
+        const payload = {katalog: katalog, images: images};
+
+        this.props.loadDataImages(payload);
+
     }
+
+
 
 
     render() {
@@ -157,10 +152,13 @@ class ConnectedInputPanel extends Component {
 
                     {/*    <div><img key="123" src={this.props.image}  alt={"aa"} onClick={this.clikImage}  />   </div>*/}
 
+                   <div><button onClick={this.handleLoad} > zaladuj zdjecia </button> </div>
 
                 </div>
 
                 <ImageCard/>
+
+
             </div>
         )
     }

@@ -11,7 +11,7 @@ import {
     GET_RESULT,
     GET_IMAGE,
     GET_SMALL_IMAGE,
-    GET_FULL_IMAGE, LOAD_IMAGES
+    GET_FULL_IMAGE, LOAD_IMAGES, LOAD_CARDS
 } from "../constants/action-types";
 
 
@@ -110,7 +110,13 @@ export function getDataImage(katalog, image) {
 
 
 export function loadDataImages(payload) {
-    return { type: LOAD_IMAGES, payload }
+    console.log("loadDataImages  payload:"+ payload);
+    return { type: LOAD_IMAGES, payload:payload }
+}
+
+export function loadCards(cards) {
+    console.log("loadCards  cards:"+ cards);
+    return { type: LOAD_CARDS, cards: cards }
 }
 
 //

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {getDataImage, getDataSmallImage} from "../actions";
+import {getDataImage, getDataSmallImage, loadDataImages} from "../actions";
 import {connect} from "react-redux";
 
 
@@ -7,17 +7,20 @@ const mapStateToProps = state => {
     return {
         imageNames: state.result.images,
         katalog: state.result.katalog,
-        smallImages: state.smallImages,
-        image: state.imgFilm
+        // smallImages: state.smallImages,
+        image: state.result.selimgFilm,
+        cards: state.cards
 
     }
 }
 
 
-function matDispatchToState(dispatch){
+function matDispatchToState(dispatch) {
     return {
         getSmallImages: (katalog, imageName) => dispatch(getDataSmallImage(katalog, imageName)),
-        getDataImage: (katalog, imageName) => dispatch(getDataImage(katalog, imageName))
+        getDataImage: (katalog, imageName) => dispatch(getDataImage(katalog, imageName)),
+        loadDataImages: (payload) => dispatch(loadDataImages(payload))
+
     }
 }
 
@@ -25,27 +28,39 @@ function matDispatchToState(dispatch){
 class ConnectedImageGallery extends Component {
 
 
-    changeClik(){
-        const katalog =  "FUJI_F400/100ASA/TetenalUltrafin/1do20/20min";
-        const imageName = "N10142_Fuji400-100ASA_Tetenal-Ultrafin-1do20-20min_FOT15.jpg";
-        // const img = [];
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            img: props.image
+        }
+    }
 
-        this.props.getDataImage(katalog, imageName);
+    loadImages() {
+
+                // const kat = this.props.katalog;
+                // const img = this.props.imageNames;
+                // const payload = {katalog: kat, images: img};
+                //
+                // this.props.loadDataImages(payload);
+        console.log(" loadImage: katalog=" );
     }
 
 
     render() {
 
+
         const image = this.props.image;
 
-        return(
+        return (
             <div>
-                <h1>IMAGE GALLERY</h1>
                 <div>
-                    <button onClick={this.changeClik} >wybierz</button>
+                    <button onClick={this.loadImages}>load images</button>
                 </div>
+                <h1>IMAGE GALLERY</h1>
 
-                <img src={image}  alt ="img do zaladowania"/>
+
+
+                <img src={image} alt="img do zaladowania"/>
 
             </div>
 

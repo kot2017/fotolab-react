@@ -1,7 +1,7 @@
 
 //adresy webserwisow
 
-export const URL_IMAGE ="http://localhost:8082/foto/photo?k=";
+export const URL_IMAGE ="http://localhost:8082/foto/photo";
 
 export const URL_PRODUCENT ="http://localhost:8082/foto/producenci";
 

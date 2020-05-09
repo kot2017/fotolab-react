@@ -39,3 +39,5 @@ export const GET_IMAGE = "GET_IMAGE";
 export const GET_SMALL_IMAGE = "GET_SMALL_IMAGE";
 
 export const LOAD_IMAGES = "LOAD_IMAGES";
+
+export const LOAD_CARDS = "LOAD_CARDS";

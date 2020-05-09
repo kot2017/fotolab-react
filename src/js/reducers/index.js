@@ -11,7 +11,7 @@ import {
     GET_RESULT,
     GET_SMALL_IMAGE,
     GET_IMAGE,
-    LOAD_IMAGES
+    LOAD_IMAGES, LOAD_CARDS
 } from "../constants/action-types";
 
 
@@ -142,7 +142,14 @@ function rootReducer(state = initialState, action) {
         case LOAD_IMAGES: {
             return Object.assign({}, state, {
 
-                cards: Array.prototype.concat( action.payload)
+                 cards: Array.prototype.concat( action.payload)
+            })
+        }
+
+        case LOAD_CARDS: {
+            console.log("  reducer LOAD_CARDS " + action.cards)
+            return Object.assign({}, state, {
+                cards: action.cards
             })
         }
 

@@ -7,7 +7,7 @@ import {batchLoadImages, logger} from "../middleware";
 
 const store = createStore(
     rootReducer,
-    applyMiddleware(thunk, logger )
+    applyMiddleware(thunk, logger, batchLoadImages )
 );
 
 

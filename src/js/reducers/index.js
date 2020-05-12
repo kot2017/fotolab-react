@@ -114,7 +114,8 @@ function rootReducer(state = initialState, action) {
 
         case GET_RESULT: {
             return Object.assign({}, state, {
-                result: action.payload
+                result: action.payload,
+                cards: []
             })
         }
 

@@ -41,13 +41,11 @@ export function batchLoadImages({state}) {
                 //   if (images != null && !images.undefined && katalog != null && !katalog.undefined) {
 
 
-
                 var fileName = [];
 
                 var urls = [];
 
                 for (var j = 0; j < imagesjpg.length; j++) {
-
                     var url = new URL(URL_IMAGE),
                         params = {k: katalog + '/male/', f: imagesjpg[j]}
                     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
@@ -55,33 +53,36 @@ export function batchLoadImages({state}) {
                     console.log(" ====>>>>" + j + "  url = " + url);
                 }
 
+/*
+                imagesjpg.map(el => {
+                    var url = new URL(URL_IMAGE),
+                        params = {k: katalog + '/male/', f: imagesjpg[j]}
+                    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+                    return url
+
+                }
+                )
+*/
+
 
 
                 //---------------------------------
                 const fotoUrls = () => {
                     console.log("fotoUrl  START");
                     const promises = urls.map(item => {
-                        console.log("item = "+ item)
+                        console.log("item = " + item)
                         return fetch(item)
                             .then(response => {
                                 return response.blob()
                             });
                     });
                     Promise.all(promises).then(results => {
-
                         var fileUrl = [];
-
-
-
                         const fotos = results.map(result => {
                             console.log("result.size" + result.size)
-
-                         var   fileImage = (window.URL || window.webkitURL).createObjectURL(result);
-
-
-                            fileUrl.push(fileImage )
-
-                        } ) ;
+                            var fileImage = (window.URL || window.webkitURL).createObjectURL(result);
+                            fileUrl.push(fileImage)
+                        });
 
                         console.log("fileUrl.length = " + fileUrl.length)
 

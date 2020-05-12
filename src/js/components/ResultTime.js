@@ -22,28 +22,27 @@ class ConnectedResultTime extends Component{
                 <div id="body3">
                     <div className={"container d-inline-flex float-right"} id="cont3wynik">
                         <div className={"row"}>
-                            <div className={"col-4"}>
-                                <p id="opiswyniku">film:<b> {wynik.filmName}</b><br/>
-                                    naswietlony jak: {wynik.asa}<br/>
-                                    wywoływacz: {wynik.chemiaName}<br/>
-                                    rozcieńczenie: {wynik.rozcienczenie}<br/>
-                                    katalog: {wynik.katalog}<br/>
-                                    nazwa pliku:<b> {wynik.numerNegatywu}</b><br/>
-                                    data: {wynik.data}
-
-
-
-
-
-                                </p>
-                            </div>
-                            <div className={"col"}>
+                            <div className={"col-12"}>
                                 <h1>czas {wynik.czasWolania}</h1>
                             </div>
                         </div>
+
+                        <div className={"row"}>
+                            <div className={"col-12"}>
+                                <p id="opiswyniku">film:<b> {wynik.filmName}</b><br/>
+
+                                    wywoływacz: {wynik.chemiaName} rozcieńczenie: {wynik.rozcienczenie}<br/>
+                                    {/*katalog: {wynik.katalog}<br/>*/}
+                                    {/*nazwa pliku:<b> {wynik.numerNegatywu}</b><br/>*/}
+                                    {/*data: {wynik.data}*/}
+                                </p>
+                            </div>
+                            </div>
+                        </div>
+
+                        </div>
                     </div>
-                </div>
-            </div>
+
         );
     }
 

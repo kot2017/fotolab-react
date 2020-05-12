@@ -121,21 +121,35 @@ class ConnectedInputPanel extends Component {
                     </div>
                 </div>
 
-                <div className={"row"} id="rowbutton">
-                    <div className={"col-12 d-flex justify-content-center"} id="row2col2button-1">
-                        <button className={"btn btn-primary"} type="button" onClick={this.handleClick}>Szukaj</button>
-                    </div>
-                </div>
+                {/*<div className={"row"} id="rowbutton">*/}
+                {/*    <div className={"col-12 d-flex justify-content-center"} id="row2col2button-1">*/}
+                {/*        <button className={"btn btn-primary"} type="button" onClick={this.handleClick}>Szukaj</button>*/}
+                {/*    </div>*/}
+                {/*    <div className={ "col-12 d-flex justify-content-center"} id="row2col2button-2">*/}
+                {/*        <button className={"btn btn-secondary"} onClick={this.handleLoad} > zaladuj zdjecia </button> </div>*/}
+                {/*</div>*/}
 
                 <div className={"row"} id="row2">
-                    <div className={"col-md-6 col-sm-12"} id="row2col1fotfilm" >
+                    <div className={"col-md-4 col-sm-12"} id="row2col1fotfilm" >
 
 
                         <img src={require(`../../img/filmy/${imgF}` )} alt="product" width={200} height={200} />
 
                     </div>
 
-                    <div className={"col-md-6 col-sm-12"} id="row2col3fotwyw">
+                    <div className={"col-md-4 col-sm-12"} id="row2col1fot-button" >
+
+                        <div className={"row"} id="rowbutton">
+                            <div className={"col-12 d-flex justify-content-center"} id="row2col2button-1">
+                                <button className={"btn btn-primary"} type="button" onClick={this.handleClick}>Szukaj</button>
+                            </div>
+                            <div className={ "col-12 d-flex justify-content-center"} id="row2col2button-2">
+                                <button className={"btn btn-secondary"} onClick={this.handleLoad} > zaladuj zdjecia </button> </div>
+                        </div>
+
+                    </div>
+
+                    <div className={"col-md-4 col-sm-12"} id="row2col3fotwyw">
 
                         <img src={require(`../../img/chemia/${imgC}` )} alt="productC" width={200} height={200} />
 
@@ -152,11 +166,17 @@ class ConnectedInputPanel extends Component {
 
                     {/*    <div><img key="123" src={this.props.image}  alt={"aa"} onClick={this.clikImage}  />   </div>*/}
 
-                   <div><button onClick={this.handleLoad} > zaladuj zdjecia </button> </div>
+
 
                 </div>
 
-                <ImageCard/>
+                {/*<ImageCard/>*/}
+
+                <div>
+                    {this.props.cards.map(el =>
+                        <img key={el.image} src={el.imgFile} alt=""  />
+                     )}
+                </div>
 
 
             </div>

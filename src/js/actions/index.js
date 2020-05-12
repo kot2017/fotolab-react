@@ -98,8 +98,14 @@ fetch(
 export function getDataImage(katalog, image) {
     return function (dispatch) {
         console.log(" wywolanie getDataImage");
-        const img = URL_IMAGE + katalog + "&f=" + image;
-        return fetch(img)
+       // const img = URL_IMAGE + katalog + "&f=" + image;
+
+        var url = new URL(URL_IMAGE),
+            params = {k: katalog  , f: image}
+        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+
+
+        return fetch(url)
             .then(response => response.blob())
             .then(blob => {
                 let fileUrl = (window.URL || window.webkitURL).createObjectURL(blob);
@@ -110,13 +116,13 @@ export function getDataImage(katalog, image) {
 
 
 export function loadDataImages(payload) {
-    console.log("loadDataImages  payload:"+ payload);
-    return { type: LOAD_IMAGES, payload:payload }
+    console.log("loadDataImages  payload:" + payload);
+    return {type: LOAD_IMAGES, payload: payload}
 }
 
-export function loadCards(cards) {
-    console.log("loadCards  cards:"+ cards);
-    return { type: LOAD_CARDS, cards: cards }
+export function loadCards(payload) {
+    console.log("loadCards  cards:" + payload);
+    return {type: LOAD_CARDS, cards: payload}
 }
 
 //
@@ -156,4 +162,41 @@ export function selectASA(payload) {
 
 export function selectDilution(payload) {
     return {type: SELECT_DILUTION, payload}
+}
+
+
+/*
+    private Date data;
+    private Integer asa;
+    private String rozcienczenie;
+    private String czasWolania;
+    private String uwagi;
+    private String katalog;
+    private String rezultat;
+    private String numerNegatywu;
+    private Integer filmId;
+    private Integer chemikaliaId;
+    private String filmName;
+    private String chemiaName;
+
+    private List<String> images;
+ */
+
+export function sendWywolanie(payload) {
+    // var payload = {
+    //     a: 1,
+    //     b: 2
+    // };
+
+    var data = new FormData();
+    data.append( "json", JSON.stringify( payload ) );
+
+    fetch(URL_RESULT,
+        {
+            method: "POST",
+            body: data
+        })
+        .then(function(res){ return res.json(); })
+        .then(function(data){ alert( JSON.stringify( data ) ) })
+
 }

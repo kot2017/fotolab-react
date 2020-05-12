@@ -12,6 +12,12 @@ const mapStateToProps = state => {
 
 class ConnectedResultTime extends Component{
 
+    constructor(props, context) {
+        super(props, context);
+    }
+
+
+
 
     render() {
 

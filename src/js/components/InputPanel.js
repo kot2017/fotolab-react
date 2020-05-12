@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {getDataProducenci, getDataResult, getDataImage, getDataSmallImage, loadDataImages } from "../actions";
 
 //import f2 from "../../img/Ultrafin.jpg";
+import kreska from "../../img/kreska.jpg"
 
 import ResultTime from "./ResultTime";
 import SelectPanelProducentFilmow from "./SelectPanelProducentFilmow";
@@ -51,8 +52,11 @@ class ConnectedInputPanel extends Component {
         super(props, context);
         this.handleClick = this.handleClick.bind(this);
         this.handleLoad = this.handleLoad.bind(this);
+        this.handleNew = this.handleNew.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
         this.state = {
-        selIm:""
+        selIm:"",
+            search: true
         }
     }
 
@@ -83,6 +87,7 @@ class ConnectedInputPanel extends Component {
     }
 
     handleLoad(){
+        console.log("  handleLoad  ");
         const images = this.props.imageNames;
         const katalog = this.props.katalog;
         const payload = {katalog: katalog, images: images};
@@ -92,17 +97,29 @@ class ConnectedInputPanel extends Component {
     }
 
 
+    handleNew(){
+        console.log("  handleNew ");
+       this.state.search = false;
+    }
+
+    handleSearch(){
+        console.log("  handleSearch  ");
+        this.state.search = true;
+    }
 
 
     render() {
-
         console.log("RENDER .. INPUT")
-
         const imgF = this.props.imgFilm;
         const imgC = this.props.imgChem;
-
         console.log("imgF="+ imgF);
         console.log("imgC="+ imgC);
+        const search = this.state.search;
+        let resultPanel ;
+        // if(this.props.result.selectedFilmId>0){
+        //    resultPanel =   <ResultTime/>
+        // }
+
 
         return (
             <div className={"container"} id="cont1">
@@ -120,69 +137,62 @@ class ConnectedInputPanel extends Component {
                         <SelectPanelDilution/>
                     </div>
                 </div>
-
-                {/*<div className={"row"} id="rowbutton">*/}
-                {/*    <div className={"col-12 d-flex justify-content-center"} id="row2col2button-1">*/}
-                {/*        <button className={"btn btn-primary"} type="button" onClick={this.handleClick}>Szukaj</button>*/}
-                {/*    </div>*/}
-                {/*    <div className={ "col-12 d-flex justify-content-center"} id="row2col2button-2">*/}
-                {/*        <button className={"btn btn-secondary"} onClick={this.handleLoad} > zaladuj zdjecia </button> </div>*/}
-                {/*</div>*/}
-
                 <div className={"row"} id="row2">
                     <div className={"col-md-4 col-sm-12"} id="row2col1fotfilm" >
-
-
                         <img src={require(`../../img/filmy/${imgF}` )} alt="product" width={200} height={200} />
-
                     </div>
 
                     <div className={"col-md-4 col-sm-12"} id="row2col1fot-button" >
 
-                        <div className={"row"} id="rowbutton">
                             <div className={"col-12 d-flex justify-content-center"} id="row2col2button-1">
-                                <button className={"btn btn-primary"} type="button" onClick={this.handleClick}>Szukaj</button>
+                                <button className={"btn btn-primary"} type="button" onClick={this.handleClick}>Szukaj wyniku</button>
                             </div>
-                            <div className={ "col-12 d-flex justify-content-center"} id="row2col2button-2">
-                                <button className={"btn btn-secondary"} onClick={this.handleLoad} > zaladuj zdjecia </button> </div>
-                        </div>
 
+                        <div>
+                            <div>
+                                <img src={kreska} alt={""} />
+                            </div>
+
+                            <div>
+                                Nowy czas wywołania:
+                            </div>
+                            <div>
+                                <input/>
+                            </div>
+                           <div>
+                               <button onClick={this.handleSearch}>Zapisz</button>
+                           </div>
+                        </div>
                     </div>
 
                     <div className={"col-md-4 col-sm-12"} id="row2col3fotwyw">
-
                         <img src={require(`../../img/chemia/${imgC}` )} alt="productC" width={200} height={200} />
-
-
                     </div>
                 </div>
                 <div className={"row"} id="row3">
                     <div className={"col"} id="timeresult">
 
                         <ResultTime/>
+                        {/*{resultPanel}*/}
+                        <button className={"btn btn-secondary"} onClick={this.handleLoad}> Pokaż zdjecia </button>
+                        <input/><button>załaduj zdjecia</button>
+                    </div>
+                </div>
+
+                <div className={"container d-inline-flex float-right"}  >
+                    <div className={"row"}>
+                        <div className={"col"}>
+                            {this.props.cards.map(el =>
+                                <ImageCard key={el.image} card={el} alt="" />
+                            )}
+                        </div>
                     </div>
 
-                    {/*<p>{this.props.image.size}IMAGE from this.props.image {this.props.image.type}</p>*/}
-
-                    {/*    <div><img key="123" src={this.props.image}  alt={"aa"} onClick={this.clikImage}  />   </div>*/}
-
-
-
                 </div>
-
-                {/*<ImageCard/>*/}
-
-                <div>
-                    {this.props.cards.map(el =>
-                        <img key={el.image} src={el.imgFile} alt=""  />
-                     )}
-                </div>
-
 
             </div>
         )
     }
-
 }
 
 

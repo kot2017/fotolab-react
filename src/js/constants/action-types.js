@@ -41,3 +41,7 @@ export const GET_SMALL_IMAGE = "GET_SMALL_IMAGE";
 export const LOAD_IMAGES = "LOAD_IMAGES";
 
 export const LOAD_CARDS = "LOAD_CARDS";
+
+//export const LOAD_CARD = "LOAD_CARD";
+
+export const SEND_WYW = "SEND_WYW";

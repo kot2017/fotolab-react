@@ -13,6 +13,7 @@ import {
     GET_IMAGE,
     LOAD_IMAGES, LOAD_CARDS
 } from "../constants/action-types";
+import {forEach} from "react-bootstrap/cjs/ElementChildren";
 
 
 const initialState = {
@@ -32,7 +33,7 @@ const initialState = {
     smallImages: [],
     image: {},
     cards: [],
-    card: {},
+     card: {},
 
 
 }
@@ -124,7 +125,7 @@ function rootReducer(state = initialState, action) {
                 // smallImages: action.payload,
                 card:
             {
-                imagFile:  action.imgFile,
+                imgFile:  action.imgFile,
                 url: action.imgUrl,
                 katalog: action.katalog,
                 imageName: action.image
@@ -141,11 +142,12 @@ function rootReducer(state = initialState, action) {
         }
 
         case LOAD_IMAGES: {
-            return Object.assign({}, state, {
-
-                 cards: Array.prototype.concat( action.payload)
+            console.log("  reducer LOAD_IMAGES " + action.cards)
+  return Object.assign({}, state, {
+                 cards: Array.prototype.concat( action.cards)
             })
         }
+
 
         case LOAD_CARDS: {
             console.log("  reducer LOAD_CARDS " + action.cards)

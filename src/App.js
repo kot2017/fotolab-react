@@ -19,7 +19,7 @@ import Result from "./Result";
 
 
 import DataInput from "./DataInput";
-import ResultInput from "./ResultInput";
+//import ResultInput from "./ResultInput";
 
 
 class App extends Component {
@@ -45,8 +45,8 @@ class App extends Component {
 
                                         <li className={"nav-item"}>
                                             <Link class={"nav-link"} to="/result">Wyniki</Link></li>
-                                        <li className={"nav-item"}>
-                                            <Link class={"nav-link"} to="/newresult">Nowy wyniki</Link></li>
+                                        {/*<li className={"nav-item"}>*/}
+                                        {/*    <Link class={"nav-link"} to="/newresult">Nowy wyniki</Link></li>*/}
 
                                         <li className={"nav-item"}>
                                             <Link class={"nav-link"} to="/datainput">Wprowadzanie danych</Link></li>
@@ -72,7 +72,7 @@ class App extends Component {
                     <Route exact path="/" component={Home}/>
                     <Route path="/about" component={About}/>
                     <Route path="/result" component={Result}/>
-                    <Route path="/newresult" component={ResultInput}/>
+                    {/*<Route path="/newresult" component={ResultInput}/>*/}
                     <Route path="/datainput" component={DataInput}/>
                 </div>
             </Router>

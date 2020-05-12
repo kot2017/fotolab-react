@@ -6,10 +6,10 @@ import {getDataImage} from "../actions";
 
 const mapStateToProps = state => {
     return {
-        image: state.card.imagFile,
-        url: state.card.url,
-        imageName: state.card.imageName,
-        katalog: state.card.katalog,
+      //  image: state.card.imagFile,
+      //   url: state.card.url,
+      //   imageName: state.card.imageName,
+      //   katalog: state.card.katalog,
         imageBig: state.image
     }
 }
@@ -20,6 +20,11 @@ function mapDispatchToState(dispatch) {
     }
 }
 
+const divStyle = {
+    margin: '40px',
+    border: '5px solid pink',
+    width: '300px'
+};
 
 class ConnectedImageCard extends Component {
 
@@ -28,7 +33,7 @@ class ConnectedImageCard extends Component {
         super(props, context);
         this.state = {
             big: true,
-           // current:{}
+           card: {}
 
         }
         this.getImage = this.getImage.bind(this);
@@ -37,11 +42,11 @@ class ConnectedImageCard extends Component {
 
 
     getImage() {
-        console.log("GET IMAGE  katalog=" + this.props.katalog);
-        console.log("nazwa =" + this.props.imageName);
+        console.log("GET IMAGE  katalog=" + this.props.card.katalog);
+        console.log("nazwa =" + this.props.card.image);
 
-        const k = this.props.katalog;
-        const i = this.props.imageName;
+        const k = this.props.card.katalog;
+        const i = this.props.card.image;
         this.props.getDataImage(k, i);
 
         const b = this.state.big;
@@ -58,10 +63,10 @@ class ConnectedImageCard extends Component {
 
         const b = this.state.big;
 
-        let current = {};
+        let current // = this.props.card.imagFile
 
         if(b){
-            current = this.props.image;
+            current = this.props.card.imgFile // this.props.image;
            // this.state.big = false;
         }else{
             current = this.props.imageBig;
@@ -70,15 +75,15 @@ class ConnectedImageCard extends Component {
 
 
         return (
-            <div>
+             <div className={divStyle} >
                 <img src={current} alt=" immage " onClick={this.getImage}/>
-                <div><h2>katalog: {this.props.katalog}</h2></div>
-                <div><h2>nazwa pliku: {this.props.imageName}</h2></div>
-                <div>
-                    <button onClick={this.getImage}>get image</button>
-                </div>
+                <div><p>katalog: {this.props.card.katalog}</p></div>
+                {/*<div><h2>nazwa pliku: {this.props.card.image}</h2></div>*/}
+                {/*<div>*/}
+                {/*    <button onClick={this.getImage}>get image</button>*/}
+                {/*</div>*/}
 
-            </div>
+             </div>
         );
     }
 

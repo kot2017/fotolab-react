@@ -11,7 +11,7 @@ const mapStateToProps = state => {
 
 function mapDispatchToProps(dispatch){
     return {
-        selectChemiaId: (chemiaId, imgId) => dispatch(selectChemiaId(chemiaId, imgId))
+        selectChemiaId: (chemiaId, imgId, name) => dispatch(selectChemiaId(chemiaId, imgId, name))
     }
 }
 
@@ -33,7 +33,7 @@ class ConnectedSelectPanelChemia extends Component{
     handleChange(event){
         const targetValue = event.target.value;
         var res = targetValue.split("&");
-        this.props.selectChemiaId(res[0], res[1]);
+        this.props.selectChemiaId(res[0], res[1], res[2]);
     }
 
     render() {
@@ -50,7 +50,7 @@ class ConnectedSelectPanelChemia extends Component{
                                 <option key={-1} value={-1}>wybierz</option>
                                 {this.props.chemia.map(
                                     el=> (
-                                        <option key={el.id} value={`${el.id}&${el.fot}`}>{el.nazwa}</option>
+                                        <option key={el.id} value={`${el.id}&${el.fot}&${el.nazwa}`}>{el.nazwa}</option>
                                     )
                                 )}
 

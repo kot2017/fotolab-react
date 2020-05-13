@@ -11,7 +11,7 @@ import {
     GET_RESULT,
     GET_SMALL_IMAGE,
     GET_IMAGE,
-    LOAD_IMAGES, LOAD_CARDS
+    LOAD_IMAGES, LOAD_CARDS, SEND_WYW
 } from "../constants/action-types";
 import {forEach} from "react-bootstrap/cjs/ElementChildren";
 
@@ -24,7 +24,9 @@ const initialState = {
     filmy: [],
     chemia: [],
     selectedFilmId: -1,
+    selectedFilmName: "",
     selectedChemiaId: -1,
+    selectedChemiaName: "",
     selectedASA: 0,
     selectedDilution: 0,
     result: {},
@@ -34,6 +36,7 @@ const initialState = {
     image: {},
     cards: [],
      card: {},
+    wywolanieId: 0,
 
 
 }
@@ -90,14 +93,16 @@ function rootReducer(state = initialState, action) {
             console.log("film= "+ action.id + "  img= "+ action.img)
             return Object.assign({}, state, {
                 selectedFilmId: action.id,
-                selimgFilm: action.img
+                selimgFilm: action.img,
+                selectedFilmName: action.name
             })
         }
 
         case SELECT_ID_CHEMIA: {
             return Object.assign({}, state , {
                 selectedChemiaId: action.id,
-                selimgChem: action.img
+                selimgChem: action.img,
+                selectedChemiaName: action.name
             })
         }
 
@@ -155,6 +160,14 @@ function rootReducer(state = initialState, action) {
                 cards: action.cards
             })
         }
+
+        case SEND_WYW: {
+            console.log("  reducer SEND_WYW "+ action.payload)
+            return Object.assign({}, state, {
+                    wywolanieId: action.payload
+            })
+        }
+
 
 
         default: {

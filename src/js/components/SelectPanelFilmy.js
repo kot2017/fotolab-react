@@ -13,7 +13,7 @@ const mapStateToProps = state => {
 //mapowanie funkcji na wywolanie akcji
 //mapujemy wybranie id filmu
 function mapDispatchToState(dispatch) {
-    return { selectFilmId: (filmId, imgId) => dispatch(selectFilmId(filmId, imgId)) }
+    return { selectFilmId: (filmId, imgId, name) => dispatch(selectFilmId(filmId, imgId, name)) }
 }
 
 
@@ -37,7 +37,7 @@ class ConnectedSelectPanelFilmy extends Component{
         console.log(" handleChange  targetValue= "+targetValue )
         var res = targetValue.split("&");
 
-        this.props.selectFilmId(res[0], res[1]);
+        this.props.selectFilmId(res[0], res[1], res[2]);
 
     }
 
@@ -58,7 +58,7 @@ class ConnectedSelectPanelFilmy extends Component{
                                 <option key={-1} value={-1}>wybierz film</option>
 
                                 {this.props.filmy.map(
-                                    el => <option id={el.id} key={el.id} value={`${el.id}&${el.fot}`}>{el.nazwa}</option>
+                                    el => <option id={el.id} key={el.id} value={`${el.id}&${el.fot}&${el.nazwa}`}>{el.nazwa}</option>
                                 )}
 
                             </select>

@@ -1,4 +1,4 @@
-import {LOAD_IMAGES, LOAD_CARDS} from "../constants/action-types";
+import {LOAD_IMAGES, LOAD_CARDS, SEND_WYW} from "../constants/action-types";
 import {URL_IMAGE} from "../constants/rest-url";
 import {forEach} from "react-bootstrap/cjs/ElementChildren";
 

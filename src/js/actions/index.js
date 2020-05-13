@@ -148,12 +148,12 @@ export function selectProducentChemiiId(payload) {
 }
 
 
-export function selectFilmId(id, img) {
-    return {type: SELECT_ID_FILM, id: id, img: img}
+export function selectFilmId(id, img, name) {
+    return {type: SELECT_ID_FILM, id: id, img: img, name: name}
 }
 
-export function selectChemiaId(id, img) {
-    return {type: SELECT_ID_CHEMIA, id, img}
+export function selectChemiaId(id, img, name) {
+    return {type: SELECT_ID_CHEMIA, id, img, name}
 }
 
 export function selectASA(payload) {
@@ -183,20 +183,30 @@ export function selectDilution(payload) {
  */
 
 export function sendWywolanie(payload) {
-    // var payload = {
-    //     a: 1,
-    //     b: 2
-    // };
+    return function (dispatch) {
+     //   var data = new FormData();
+      //  data.append("json", JSON.stringify(payload));
 
-    var data = new FormData();
-    data.append( "json", JSON.stringify( payload ) );
+        console.log("sendWywolanie - data = " + JSON.stringify(payload));
 
-    fetch(URL_RESULT,
-        {
-            method: "POST",
-            body: data
-        })
-        .then(function(res){ return res.json(); })
-        .then(function(data){ alert( JSON.stringify( data ) ) })
+        fetch(URL_RESULT,
+            {
+                method: "POST",
+               // mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'},
+                body: JSON.stringify(payload),
+            } )
+            .then(function (res) {
+                return res.statusText
+            })
+            .then(function (data) {
+                if(data === "OK"){
+                    alert("zapisano, OK");
+                }else{
+                    alert( data)
+                }
 
+            })
+    }
 }

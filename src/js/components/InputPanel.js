@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {getDataProducenci, getDataResult, getDataImage, getDataSmallImage, loadDataImages } from "../actions";
+import {getDataProducenci, getDataResult, getDataImage, getDataSmallImage, loadDataImages, sendWywolanie } from "../actions";
 
 //import f2 from "../../img/Ultrafin.jpg";
 import kreska from "../../img/kreska.jpg"
@@ -24,7 +24,9 @@ const mapStateToProps = state => {
         producenciFilmow: state.producenciFilmow,
         producenciChemii: state.producenciChemii,
         film: state.selectedFilmId,
+        filmName: state.selectedFilmName,
         chemia: state.selectedChemiaId,
+        chemiaName: state.selectedChemiaName,
         asa: state.selectedASA,
         roz: state.selectedDilution,
         imgFilm: state.selimgFilm,
@@ -53,10 +55,11 @@ class ConnectedInputPanel extends Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleLoad = this.handleLoad.bind(this);
         this.handleNew = this.handleNew.bind(this);
-        this.handleSearch = this.handleSearch.bind(this);
+        this.handleChangeInput = this.handleChangeInput.bind(this);
+
         this.state = {
         selIm:"",
-            search: true
+         newTime: ""
         }
     }
 
@@ -99,13 +102,48 @@ class ConnectedInputPanel extends Component {
 
     handleNew(){
         console.log("  handleNew ");
-       this.state.search = false;
+
+
+        const a = this.props.asa;
+        const r = this.props.roz;
+        const f = this.props.film;
+        const c = this.props.chemia;
+        const time = this.state.newTime
+        const fname = this.props.filmName
+        const cname = this.props.chemiaName
+
+       const fnamet = fname.replace( /\s/g, '')
+        const cnamet = cname.replace( /\s/g, '')
+        const timet = time.replace( /\s/g, '')
+
+
+        const katalog = fnamet+"\\"+a+"ASA\\"+cnamet+"\\1do" +r+"\\" + timet
+
+        var payload = {
+            data: Date.now(),
+            asa: a,
+            rozcienczenie: r ,
+            czasWolania: time,
+            uwagi: "",
+            katalog: katalog,
+            numerNegatywu: "",
+            filmId: f,
+            chemikaliaId: c,
+            filmName: "",
+            chemiaName: ""
+        };
+
+        console.log("handleNew ==> payload = "+payload)
+
+        this.props.sendWywolanie(payload)
     }
 
-    handleSearch(){
-        console.log("  handleSearch  ");
-        this.state.search = true;
+   handleChangeInput(event){
+       console.log("  handleChangeInput  newRime = " + event.target.value);
+       this.state.newTime = event.target.value;
+
     }
+
 
 
     render() {
@@ -114,11 +152,8 @@ class ConnectedInputPanel extends Component {
         const imgC = this.props.imgChem;
         console.log("imgF="+ imgF);
         console.log("imgC="+ imgC);
-        const search = this.state.search;
-        let resultPanel ;
-        // if(this.props.result.selectedFilmId>0){
-        //    resultPanel =   <ResultTime/>
-        // }
+
+
 
 
         return (
@@ -157,10 +192,10 @@ class ConnectedInputPanel extends Component {
                                 Nowy czas wywołania:
                             </div>
                             <div>
-                                <input/>
+                                <input onChange={this.handleChangeInput}/>
                             </div>
                            <div>
-                               <button onClick={this.handleSearch}>Zapisz</button>
+                               <button onClick={this.handleNew}>Zapisz</button>
                            </div>
                         </div>
                     </div>
@@ -196,6 +231,6 @@ class ConnectedInputPanel extends Component {
 }
 
 
-const InputPanel = connect(mapStateToProps, { getDataProducenci, getDataResult, getDataImage, getDataSmallImage , loadDataImages })(ConnectedInputPanel);
+const InputPanel = connect(mapStateToProps, { getDataProducenci, getDataResult, getDataImage, getDataSmallImage , loadDataImages, sendWywolanie })(ConnectedInputPanel);
 
 export default InputPanel;

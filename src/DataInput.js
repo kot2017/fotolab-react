@@ -1,4 +1,5 @@
 import React from 'react';
+import FileLoader from "./js/components/FileLoader";
 
 const DataInput = () => {
     return (
@@ -8,6 +9,7 @@ const DataInput = () => {
             <li>producenci</li>
             <li>filmy</li>
             <li>chemikalia</li>
+            <FileLoader/>
         </div>
     );
 }

@@ -11,7 +11,8 @@ import {
     GET_RESULT,
     GET_IMAGE,
     GET_SMALL_IMAGE,
-    GET_FULL_IMAGE, LOAD_IMAGES, LOAD_CARDS
+    GET_FULL_IMAGE, LOAD_IMAGES, LOAD_CARDS, UPLOAD_PHOTO, ADD_PHOTO_TO_UPLOAD,
+    SET_TIME, SEND_WYW, SET_KATALOG
 } from "../constants/action-types";
 
 
@@ -115,6 +116,9 @@ export function getDataImage(katalog, image) {
 }
 
 
+
+
+
 export function loadDataImages(payload) {
     console.log("loadDataImages  payload:" + payload);
     return {type: LOAD_IMAGES, payload: payload}
@@ -186,7 +190,6 @@ export function sendWywolanie(payload) {
     return function (dispatch) {
      //   var data = new FormData();
       //  data.append("json", JSON.stringify(payload));
-
         console.log("sendWywolanie - data = " + JSON.stringify(payload));
 
         fetch(URL_RESULT,
@@ -209,4 +212,30 @@ export function sendWywolanie(payload) {
 
             })
     }
+}
+
+
+export function addPhoto(payload) {
+    console.log("  action ADD_PHOTO_TO_UPLOAD  " + payload)
+    return {type: ADD_PHOTO_TO_UPLOAD,  payload}
+}
+
+
+
+export function uploadPhoto() {
+        console.log(" action  UPLOAD_PHOTO  ");
+        return {type: UPLOAD_PHOTO}
+}
+
+
+export function setTime(payload) {
+    console.log(" action SET_TIME "+ payload);
+    return {type: SET_TIME, payload}
+}
+
+
+export function setKatalog(payload) {
+    console.log(" action SET_KATALOG "+ payload);
+    return {type: SET_KATALOG, payload}
+
 }

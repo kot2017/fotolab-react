@@ -45,3 +45,15 @@ export const LOAD_CARDS = "LOAD_CARDS";
 //export const LOAD_CARD = "LOAD_CARD";
 
 export const SEND_WYW = "SEND_WYW";
+
+//wyslij zdjecia do serwera
+export const UPLOAD_PHOTO = "UPLOAD_PHOTO";
+
+//wstaw zdjęcia do wyslania
+export const ADD_PHOTO_TO_UPLOAD = "ADD_PHOTO_TO_UPLOAD";
+
+//wprowadzenie czasu wuywolannia
+export const SET_TIME = "SET_TIME";
+
+//ustawienie katalogu
+export const SET_KATALOG = "SET_KATALOG"

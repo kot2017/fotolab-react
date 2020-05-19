@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {getDataProducenci, getDataResult, getDataImage, getDataSmallImage, loadDataImages, sendWywolanie } from "../actions";
+import {getDataProducenci, getDataResult, getDataImage, getDataSmallImage, loadDataImages, sendWywolanie, setTime , setKatalog} from "../actions";
 
 //import f2 from "../../img/Ultrafin.jpg";
 import kreska from "../../img/kreska.jpg"
@@ -14,6 +14,7 @@ import SelectPanelASA from "./SelectPanelASA";
 import SelectPanelDilution from "./SelectPanelDilution";
 //import ImageGallery from "./ImageGalery";
 import ImageCard from "./ImageCard";
+import FileLoader from "./FileLoader";
 
 
 //var images = require.context('../../img', true);
@@ -36,7 +37,8 @@ const mapStateToProps = state => {
         imageNames: state.result.images,
         katalog: state.result.katalog,
         cards: state.cards,
-        result: state.result
+        result: state.result,
+        time: state.time
 
 
     };
@@ -99,11 +101,27 @@ class ConnectedInputPanel extends Component {
 
     }
 
+    //
+    buildKatalog(){
+        const a = this.props.asa;
+        const r = this.props.roz;
+        const time = this.state.newTime
+        const fname = this.props.filmName
+        const cname = this.props.chemiaName
+
+        const fnamet = fname.replace( /\s/g, '')
+        const cnamet = cname.replace( /\s/g, '')
+        const timet = time.replace( /\s/g, '')
+
+
+        const katalog = fnamet+"\\"+a+"ASA\\"+cnamet+"\\1do" +r+"\\" + timet;
+        return katalog;
+    }
 
     handleNew(){
         console.log("  handleNew ");
 
-
+       //
         const a = this.props.asa;
         const r = this.props.roz;
         const f = this.props.film;
@@ -118,6 +136,8 @@ class ConnectedInputPanel extends Component {
 
 
         const katalog = fnamet+"\\"+a+"ASA\\"+cnamet+"\\1do" +r+"\\" + timet
+
+      //  const katalog = this.buildKatalog();
 
         var payload = {
             data: Date.now(),
@@ -141,6 +161,9 @@ class ConnectedInputPanel extends Component {
    handleChangeInput(event){
        console.log("  handleChangeInput  newRime = " + event.target.value);
        this.state.newTime = event.target.value;
+       this.props.setTime(event.target.value);
+       const katalog = this.buildKatalog();
+       this.props.setKatalog(katalog)
 
     }
 
@@ -211,6 +234,9 @@ class ConnectedInputPanel extends Component {
                         {/*{resultPanel}*/}
                         <button className={"btn btn-secondary"} onClick={this.handleLoad}> Pokaż zdjecia </button>
                         <input/><button>załaduj zdjecia</button>
+                        <div>
+                            <FileLoader/>
+                        </div>
                     </div>
                 </div>
 
@@ -231,6 +257,9 @@ class ConnectedInputPanel extends Component {
 }
 
 
-const InputPanel = connect(mapStateToProps, { getDataProducenci, getDataResult, getDataImage, getDataSmallImage , loadDataImages, sendWywolanie })(ConnectedInputPanel);
+const InputPanel = connect(mapStateToProps, {
+    getDataProducenci, getDataResult, getDataImage, getDataSmallImage , loadDataImages, sendWywolanie, setTime, setKatalog
+
+})(ConnectedInputPanel);
 
 export default InputPanel;

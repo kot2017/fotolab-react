@@ -1,4 +1,4 @@
-import {LOAD_IMAGES, LOAD_CARDS, SEND_WYW} from "../constants/action-types";
+import {LOAD_IMAGES, LOAD_CARDS, SEND_WYW, UPLOAD_PHOTO} from "../constants/action-types";
 import {URL_IMAGE} from "../constants/rest-url";
 import {forEach} from "react-bootstrap/cjs/ElementChildren";
 
@@ -117,5 +117,55 @@ export function batchLoadImages({state}) {
             }
 
         };
+    }
+}
+
+
+export function uploadPhotos({getState}) {
+    console.log("|+++++++++++++++| uploadPhotos ");
+    return next => {
+        return action => {
+            console.log("|++++++| uploadPhotos action", action);
+            //const returnVal = next(action);
+            if (action.type === UPLOAD_PHOTO) {
+                console.log("  action UPLOAD_PHOTO  " )
+
+                const photos = getState().uploadPhotos
+                const katalog = getState().katalog
+
+
+                console.log("|||| photos: " + photos.length);
+                console.log("|||| katalog: " +  katalog);
+
+                 function send ( ) {
+                     console.log("|||| send() ");
+                    const formData = new FormData();
+
+                     const foty = getState().uploadPhotos;
+                     for(let i=0; i<foty.length; i++){
+                         formData.append('files', foty[i]);
+                     }
+                    formData.append("katalog", katalog);
+                    fetch('http://localhost:8082/foto/multi-upload', {
+                        method: 'post',
+                        body: formData
+                    }).then(res => {
+                        if (res.ok) {
+                            console.log(res.data);
+                          //  alert("File uploaded successfully.")
+                        }
+                    });
+                }
+
+                if(photos != null && !photos.undefined && photos.length>0 && katalog!=null && !katalog.undefined){
+                    console.log("|||| będę wywołał " );
+                    send();
+                }
+
+
+            }
+            const returnVal = next(action);
+            return returnVal;
+        }
     }
 }

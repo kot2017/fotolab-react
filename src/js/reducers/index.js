@@ -11,7 +11,7 @@ import {
     GET_RESULT,
     GET_SMALL_IMAGE,
     GET_IMAGE,
-    LOAD_IMAGES, LOAD_CARDS, SEND_WYW
+    LOAD_IMAGES, LOAD_CARDS, SEND_WYW, ADD_PHOTO_TO_UPLOAD, UPLOAD_PHOTO, SET_TIME, SET_KATALOG
 } from "../constants/action-types";
 import {forEach} from "react-bootstrap/cjs/ElementChildren";
 
@@ -37,6 +37,9 @@ const initialState = {
     cards: [],
      card: {},
     wywolanieId: 0,
+    uploadPhotos: [],
+    time: "",
+    katalog: ""
 
 
 }
@@ -168,7 +171,31 @@ function rootReducer(state = initialState, action) {
             })
         }
 
+        case ADD_PHOTO_TO_UPLOAD: {
+            console.log("  reducer ADD_PHOTO_TO_UPLOAD "+ action.payload)
+            return  Object.assign({}, state, {
+                uploadPhotos: action.payload
+            })
+        }
 
+        case  UPLOAD_PHOTO: {
+            console.log("  reducer  UPLOAD_PHOTO ")
+            return Object.assign({}, state,{})
+        }
+
+        case SET_TIME: {
+            console.log("  reducer  SET_TIME")
+            return Object.assign({}, state, {
+                time: action.payload
+            })
+        }
+
+        case SET_KATALOG: {
+            console.log("  reducer  SET_KATALOG")
+            return Object.assign({}, state, {
+                katalog: action.payload
+            })
+        }
 
         default: {
             return state;

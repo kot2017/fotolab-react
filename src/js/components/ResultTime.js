@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import {connect} from "react-redux";
 
 
@@ -6,23 +6,18 @@ const mapStateToProps = state => {
     return {
         result: state.result
     }
-
 }
 
 
-class ConnectedResultTime extends Component{
+class ConnectedResultTime extends Component {
 
     constructor(props, context) {
         super(props, context);
     }
 
 
-
-
     render() {
-
         const wynik = this.props.result;
-
         return (
             <div>
                 <div id="body3">
@@ -43,15 +38,13 @@ class ConnectedResultTime extends Component{
                                     {/*data: {wynik.data}*/}
                                 </p>
                             </div>
-                            </div>
-                        </div>
-
                         </div>
                     </div>
 
+                </div>
+            </div>
         );
     }
-
 }
 
 const ResultTime = connect(mapStateToProps)(ConnectedResultTime);

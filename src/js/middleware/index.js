@@ -1,5 +1,5 @@
 import {LOAD_IMAGES, LOAD_CARDS, SEND_WYW, UPLOAD_PHOTO} from "../constants/action-types";
-import {URL_IMAGE} from "../constants/rest-url";
+import {URL_IMAGE, URL_LOAD_IMAGES} from "../constants/rest-url";
 import {forEach} from "react-bootstrap/cjs/ElementChildren";
 
 export function logger({getState}) {
@@ -16,7 +16,6 @@ export function batchLoadImages({state}) {
     return next => {
         return action => {
             console.log("||||||| batchLoadImages  action", action);
-            //const returnVal = next(action);
             if (action.type === LOAD_IMAGES) {
                 console.log("|||| batchLoadImages LOAD_IMAGES ||||");
 
@@ -31,23 +30,15 @@ export function batchLoadImages({state}) {
 
                 const imagesjpg = []
 
-
                 if (images != null && !images.undefined && katalog != null && !katalog.undefined) {
-
                     //wybierz tylko images jpg
                     images.map(el => {
                         if (el.endsWith(".jpg")) {
                             imagesjpg.push(el);
                         }
                     })
-
-                    //
-
-
                     var fileName = [];
-
                     var urls = [];
-
                     for (var j = 0; j < imagesjpg.length; j++) {
                         var url = new URL(URL_IMAGE),
                             params = {k: katalog + '/male/', f: imagesjpg[j]}
@@ -55,20 +46,6 @@ export function batchLoadImages({state}) {
                         urls[j] = url;
                         console.log(" ====>>>>" + j + "  url = " + url);
                     }
-
-                    /*
-                                    imagesjpg.map(el => {
-                                        var url = new URL(URL_IMAGE),
-                                            params = {k: katalog + '/male/', f: imagesjpg[j]}
-                                        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
-                                        return url
-
-                                    }
-                                    )
-                    */
-
-
-                    //---------------------------------
                     const fotoUrls = () => {
                         console.log("fotoUrl  START");
                         const promises = urls.map(item => {
@@ -85,9 +62,7 @@ export function batchLoadImages({state}) {
                                 var fileImage = (window.URL || window.webkitURL).createObjectURL(result);
                                 fileUrl.push(fileImage)
                             });
-
                             console.log("fileUrl.length = " + fileUrl.length)
-
                             for (var j = 0; j < fileUrl.length; j++) {
                                 cards[j] = {
                                     imgFile: fileUrl[j], // (window.URL || window.webkitURL).createObjectURL(blob),
@@ -95,27 +70,20 @@ export function batchLoadImages({state}) {
                                     katalog: katalog,
                                     image: imagesjpg[j]
                                 }
-
                             }
-
                             const returnValue2 = next({type: LOAD_CARDS, cards});
                             return returnValue2;
-
                         })
                     }
                     //-----------------------------------
-
-
                     if (imagesjpg != null && imagesjpg.length > 0) {
                         fotoUrls();
                     }
                 }
-
             } else {
                 const returnVal = next(action);
                 return returnVal;
             }
-
         };
     }
 }
@@ -126,7 +94,6 @@ export function uploadPhotos({getState}) {
     return next => {
         return action => {
             console.log("|++++++| uploadPhotos action", action);
-            //const returnVal = next(action);
             if (action.type === UPLOAD_PHOTO) {
                 console.log("  action UPLOAD_PHOTO  " )
 
@@ -146,7 +113,7 @@ export function uploadPhotos({getState}) {
                          formData.append('files', foty[i]);
                      }
                     formData.append("katalog", katalog);
-                    fetch('http://localhost:8082/foto/multi-upload', {
+                    fetch(URL_LOAD_IMAGES, {
                         method: 'post',
                         body: formData
                     }).then(res => {
@@ -156,13 +123,9 @@ export function uploadPhotos({getState}) {
                         }
                     });
                 }
-
                 if(photos != null && !photos.undefined && photos.length>0 && katalog!=null && !katalog.undefined){
-                    console.log("|||| będę wywołał " );
                     send();
                 }
-
-
             }
             const returnVal = next(action);
             return returnVal;

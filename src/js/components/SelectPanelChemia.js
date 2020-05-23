@@ -1,23 +1,22 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {selectChemiaId} from "../actions";
 import {connect} from "react-redux";
 
 
 const mapStateToProps = state => {
-    return{
+    return {
         chemia: state.chemia
     }
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
     return {
         selectChemiaId: (chemiaId, imgId, name) => dispatch(selectChemiaId(chemiaId, imgId, name))
     }
 }
 
 
-class ConnectedSelectPanelChemia extends Component{
-
+class ConnectedSelectPanelChemia extends Component {
 
     constructor(props, context) {
         super(props, context);
@@ -25,12 +24,11 @@ class ConnectedSelectPanelChemia extends Component{
             chemia: [],
             selectChemiaId: -1
         }
-
         this.handleChange = this.handleChange.bind(this);
     }
 
 
-    handleChange(event){
+    handleChange(event) {
         const targetValue = event.target.value;
         var res = targetValue.split("&");
         this.props.selectChemiaId(res[0], res[1], res[2]);
@@ -49,7 +47,7 @@ class ConnectedSelectPanelChemia extends Component{
                             <select onChange={this.handleChange} key={"selectChemia"} name={"selectChemia"}>
                                 <option key={-1} value={-1}>wybierz</option>
                                 {this.props.chemia.map(
-                                    el=> (
+                                    el => (
                                         <option key={el.id} value={`${el.id}&${el.fot}&${el.nazwa}`}>{el.nazwa}</option>
                                     )
                                 )}

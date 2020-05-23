@@ -41,15 +41,15 @@ class App extends Component {
                                      id="navcol-1" style={{backgroundColor: (205, 198, 192)}}>
                                     <ul className={"nav navbar-nav ml-auto"}>
                                         <li className={"nav-item"}>
-                                            <Link class={"nav-link"} to="/">Home</Link></li>
+                                            <Link className={"nav-link"} to="/">Home</Link></li>
 
                                         <li className={"nav-item"}>
-                                            <Link class={"nav-link"} to="/result">Wyniki</Link></li>
+                                            <Link className={"nav-link"} to="/result">Wyniki</Link></li>
                                         {/*<li className={"nav-item"}>*/}
                                         {/*    <Link class={"nav-link"} to="/newresult">Nowy wyniki</Link></li>*/}
 
                                         <li className={"nav-item"}>
-                                            <Link class={"nav-link"} to="/datainput">Wprowadzanie danych</Link></li>
+                                            <Link className={"nav-link"} to="/datainput">Wprowadzanie danych</Link></li>
 
                                     </ul>
                                 </div>

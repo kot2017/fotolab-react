@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from "react-redux";
+import React, {Component} from 'react';
+import {connect} from "react-redux";
 
-import {   selectProducentChemiiId, getDataChemia } from "../actions";
-//import {logger} from "../middleware";
+import {selectProducentChemiiId, getDataChemia} from "../actions";
 
 
 const mapStateToProps = state => {
@@ -15,13 +14,12 @@ const mapStateToProps = state => {
 function mapDispatchToProps(dispatch) {
     return {
         selectProducentChemiiId: producentChemiiId => dispatch(selectProducentChemiiId(producentChemiiId)),
-        getDataChemia: producentChemiiId  => dispatch(getDataChemia(producentChemiiId ))
+        getDataChemia: producentChemiiId => dispatch(getDataChemia(producentChemiiId))
     }
 }
 
 
-
-class ConnectedSelectPanelProducentChemii extends Component{
+class ConnectedSelectPanelProducentChemii extends Component {
 
     constructor(props) {
         super(props);
@@ -33,18 +31,15 @@ class ConnectedSelectPanelProducentChemii extends Component{
 
 
     handleChangeChemiaId(event) {
-
         const targetValue = event.target.value;
-        console.log("wybrany producent chemii przy zmianie: "+ targetValue);
-      this.props.selectProducentChemiiId( targetValue);
+        console.log("wybrany producent chemii przy zmianie: " + targetValue);
+        this.props.selectProducentChemiiId(targetValue);
         //wywolaj rest dla listy chemii tego producenta
         this.props.getDataChemia(targetValue)
     };
 
 
     render() {
-      //  const {selectedOption } = this.state;
-
         return (
             <div id="body3">
                 <div className="container" id="cont-select">
@@ -69,6 +64,6 @@ class ConnectedSelectPanelProducentChemii extends Component{
     }
 }
 
-const SelectPanelProducentChemii = connect(mapStateToProps, mapDispatchToProps )(ConnectedSelectPanelProducentChemii);
+const SelectPanelProducentChemii = connect(mapStateToProps, mapDispatchToProps)(ConnectedSelectPanelProducentChemii);
 
 export default SelectPanelProducentChemii;

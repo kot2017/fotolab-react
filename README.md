@@ -3,23 +3,27 @@
 Projekt testowy w celu sprawdzenia założeń (proof of concept)
 
 ##Cel biznesowy
-Sprawdzenie pomysłu na zarządzanie eksperymentami
+Sprawdzenie pomysłu na zarządzanie eksperymentami.
+####opis problemu
+Podczas testowania róznych rodzajów filmów i wywoływaczy tworzona jest baza wiedzy, która obejmuje rózne kombinacje parametrów. Powstaje również dużo zdjęc, które muszą byc odpowiednio zarządzane. 
+####podejście do rozwiązania
+Zapisywanie w bazie danych kombinacji wywołań filmów, a towarzyszących im zdjęć w strukturze plików. Powiązanie ścieżki do plików zdjęć na poodstawie nazw parametrów.
 
-##Opis projektu
+![a](szkic.jpg) 
+ 
 
-Projekt umozliwia zarządanie wywoływania filmów analogowych przy  róznych  kombinacjach filmu i wywoływacza.
-
-usługa do zapisywania wywolań filmów
+##Architektura aplikacji
 backend: SpringBoot + REST + MySQL + Hibernate
+
 frontend: React + Redux + Route + MaterialUI
 
+![a](wcm28m.jpg)
 
-##Architektura
-
-
-
-![a](wc68'.jpg)
-<img src="WCM0019.jpeg"/>
+##Architektura informacji
+####odczyt danych
+Użytkownik wybiera z rozwijanej listy parametry filmow i wywoływaczy a system znajduje odpowiadający im czas wywołania oraz przykładowe zdjęcia.
+####wprowadzanie danych
+Użytkownik wybiera z rozwijaneych list parametry filmów i wywoływaczy i wprowadza czas wywołania, a nastepnie wysyła przykładowe zdjęcia.
 
 ####Projekt frontendu
 Stona wejściowa
@@ -29,6 +33,11 @@ Funkcje składowe:
 2.	Wybranie z listy filmu i wywoływacza
 3.	Wprowadzenie dodatkowych danych o wywołaniu
 4.	Zapisanie wywołania w bazie
+
+![](wcm69.jpg)
+
+![](fotolab_projekt_graficzny1.jpg)
+
 
 
 

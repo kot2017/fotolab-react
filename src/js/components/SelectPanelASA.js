@@ -3,11 +3,6 @@ import {selectASA} from "../actions";
 import {connect} from "react-redux";
 
 
-// const mapStateToProps = state => {
-//     return {selectedASA: state.selectedASA}
-// }
-
-
 function matDispatchToState(dispatch){
       return {  qselectASA: asa => dispatch(selectASA(asa))}
 }

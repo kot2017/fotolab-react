@@ -6,10 +6,6 @@ import {getDataImage} from "../actions";
 
 const mapStateToProps = state => {
     return {
-      //  image: state.card.imagFile,
-      //   url: state.card.url,
-      //   imageName: state.card.imageName,
-      //   katalog: state.card.katalog,
         imageBig: state.image
     }
 }
@@ -60,20 +56,13 @@ class ConnectedImageCard extends Component {
 
 
     render() {
-
         const b = this.state.big;
-
         let current // = this.props.card.imagFile
-
         if(b){
             current = this.props.card.imgFile // this.props.image;
-           // this.state.big = false;
         }else{
             current = this.props.imageBig;
-          //  this.state.big = true
         }
-
-
         return (
              <div className={divStyle} >
                 <img src={current} alt=" immage " onClick={this.getImage}/>
@@ -82,12 +71,9 @@ class ConnectedImageCard extends Component {
                 {/*<div>*/}
                 {/*    <button onClick={this.getImage}>get image</button>*/}
                 {/*</div>*/}
-
              </div>
         );
     }
-
-
 }
 
 const ImageCard = connect(mapStateToProps, mapDispatchToState)(ConnectedImageCard)

@@ -51,25 +51,6 @@ class ConnectedFileLoader extends Component{
     }
 
 
-    // buildKatalog(){
-    //     const a = this.props.asa;
-    //     const r = this.props.roz;
-    //     const time = this.props.time;
-    //     const fname = this.props.filmName
-    //     const cname = this.props.chemiaName
-    //
-    //     const fnamet = fname.replace( /\s/g, '')
-    //     const cnamet = cname.replace( /\s/g, '')
-    //     const timet = time.replace( /\s/g, '')
-    //
-    //
-    //     const katalog = fnamet+"\\"+a+"ASA\\"+cnamet+"\\1do" +r+"\\" + timet;
-    //     return katalog;
-    // }
-
-
-
-
     render(){
         return(
             <div className="container">

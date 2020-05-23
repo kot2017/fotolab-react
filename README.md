@@ -2,6 +2,9 @@
 
 Projekt testowy w celu sprawdzenia założeń (proof of concept)
 
+## projekty powiązane
+https://github.com/kot2017/fotospring
+
 ## Cel biznesowy
 Sprawdzenie pomysłu na zarządzanie eksperymentami.
 #### opis problemu

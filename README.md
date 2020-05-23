@@ -21,9 +21,9 @@ frontend: React + Redux + Route + MaterialUI
 
 ## Architektura informacji
 #### odczyt danych
-Użytkownik wybiera z rozwijanej listy parametry filmow i wywoływaczy a system znajduje odpowiadający im czas wywołania oraz przykładowe zdjęcia.
+Użytkownik wybiera z rozwijanych list parametry filmow i wywoływaczy a system znajduje odpowiadający im czas wywołania oraz przykładowe zdjęcia.
 #### wprowadzanie danych
-Użytkownik wybiera z rozwijaneych list parametry filmów i wywoływaczy i wprowadza czas wywołania, a nastepnie wysyła przykładowe zdjęcia.
+Użytkownik wybiera z rozwijanych list parametry filmów i wywoływaczy i wprowadza czas wywołania, a nastepnie wysyła przykładowe zdjęcia.
 
 #### Projekt frontendu
 Stona wejściowa

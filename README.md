@@ -40,8 +40,9 @@ Funkcje składowe:
 ![](wcm69.jpg)
 
 ![](fotolab_projekt_graficzny1.jpg)
-
-
+## realizacja
+![](e1.jpg)
+![](e2.jpg)
 
 
 

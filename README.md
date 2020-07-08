@@ -42,6 +42,8 @@ Funkcje składowe:
 ![](fotolab_projekt_graficzny1.jpg)
 ## realizacja
 ![](e1.jpg)
+
+### wyszukiwanie i wprowadzanie danych
 ![](e2.jpg)
 
 
